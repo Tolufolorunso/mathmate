@@ -1,22 +1,25 @@
 import React from 'react';
-import { Text } from 'react-native';
+import MathCameraMode from '../../components/math/MathCameraMode';
+import MathTypeMode from '../../components/math/MathTypeMode';
 import ScreenWrapper from '../../components/ScreenWrapper';
 import AppBar from '../../components/ui/AppBar';
+import { useMathStore } from '../../store/mathStore';
 
 const MathScreen = () => {
   const [isSwitchOn, setIsSwitchOn] = React.useState(false);
 
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
+  const { mode, toggleMode } = useMathStore();
   return (
     <>
       <AppBar
         title='Mathy'
-        onToggleSwitch={onToggleSwitch}
-        isSwitchOn={isSwitchOn}
+        onToggleSwitch={toggleMode}
+        isSwitchOn={mode === 'type'}
         show
       />
       <ScreenWrapper>
-        <Text>MathScreen</Text>
+        {mode === 'camera' ? <MathCameraMode /> : <MathTypeMode />}
       </ScreenWrapper>
     </>
   );
