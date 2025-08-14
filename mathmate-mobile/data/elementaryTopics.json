@@ -1,0 +1,802 @@
+{
+  "level": "elementary",
+  "ageRange": "Ages 6-11",
+  "totalTopics": 30,
+  "topics": [
+    {
+      "id": "E001",
+      "title": "Counting 1-20",
+      "coreIdea": "Objects appear 1→20",
+      "gifScene": "Apples popping up, counter overlay",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Easy",
+      "estimatedTime": "15 min",
+      "prerequisites": [],
+      "learningObjectives": [
+        "Count from 1 to 20 in sequence",
+        "Recognize number symbols 1-20",
+        "Understand one-to-one correspondence",
+        "Develop number sense for quantities up to 20"
+      ],
+      "content": {
+        "introduction": "Learn to count from 1 to 20 with fun animations",
+        "keyConcepts": [
+          "Sequential counting",
+          "Number recognition",
+          "Quantity understanding"
+        ],
+        "examples": [
+          "Counting apples in a basket",
+          "Counting fingers on hands",
+          "Counting steps while walking"
+        ]
+      }
+    },
+    {
+      "id": "E002",
+      "title": "Counting Backwards 20-1",
+      "coreIdea": "Objects disappear 20→1",
+      "gifScene": "Balloons popping one by one",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Easy",
+      "estimatedTime": "15 min",
+      "prerequisites": ["E001"],
+      "learningObjectives": [
+        "Count backwards from 20 to 1",
+        "Understand reverse counting sequence",
+        "Develop number sense in reverse order"
+      ],
+      "content": {
+        "introduction": "Practice counting backwards from 20 to 1",
+        "keyConcepts": [
+          "Reverse counting",
+          "Number sequence",
+          "Backward patterns"
+        ],
+        "examples": [
+          "Countdown for rocket launch",
+          "Counting remaining cookies",
+          "Countdown timer"
+        ]
+      }
+    },
+    {
+      "id": "E003",
+      "title": "Number Line 0-10",
+      "coreIdea": "Left-to-right hop",
+      "gifScene": "Frog hopping on numbered lily-pads",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Easy",
+      "estimatedTime": "20 min",
+      "prerequisites": ["E001"],
+      "learningObjectives": [
+        "Understand number line concept",
+        "Recognize position of numbers 0-10",
+        "Learn left-to-right progression"
+      ],
+      "content": {
+        "introduction": "Explore the number line from 0 to 10",
+        "keyConcepts": [
+          "Number line representation",
+          "Left-to-right progression",
+          "Number positioning"
+        ],
+        "examples": [
+          "Frog hopping on lily pads",
+          "Walking on a number path",
+          "Moving along a ruler"
+        ]
+      }
+    },
+    {
+      "id": "E004",
+      "title": "Basic Addition 0-5",
+      "coreIdea": "Combine groups",
+      "gifScene": "2 + 3 marbles rolling together",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Medium",
+      "estimatedTime": "25 min",
+      "prerequisites": ["E001", "E003"],
+      "learningObjectives": [
+        "Add numbers from 0 to 5",
+        "Understand combining groups",
+        "Learn addition symbols and concepts"
+      ],
+      "content": {
+        "introduction": "Learn basic addition with numbers 0-5",
+        "keyConcepts": [
+          "Combining groups",
+          "Addition symbol (+)",
+          "Sum concept"
+        ],
+        "examples": [
+          "2 marbles + 3 marbles = 5 marbles",
+          "1 apple + 4 apples = 5 apples",
+          "0 cookies + 5 cookies = 5 cookies"
+        ]
+      }
+    },
+    {
+      "id": "E005",
+      "title": "Basic Subtraction 0-5",
+      "coreIdea": "Remove objects",
+      "gifScene": "5 cookies → 2 eaten → 3 left",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Medium",
+      "estimatedTime": "25 min",
+      "prerequisites": ["E001", "E004"],
+      "learningObjectives": [
+        "Subtract numbers from 0 to 5",
+        "Understand removing objects",
+        "Learn subtraction symbols and concepts"
+      ],
+      "content": {
+        "introduction": "Learn basic subtraction with numbers 0-5",
+        "keyConcepts": [
+          "Removing objects",
+          "Subtraction symbol (-)",
+          "Difference concept"
+        ],
+        "examples": [
+          "5 cookies - 2 eaten = 3 cookies left",
+          "4 apples - 1 apple = 3 apples",
+          "3 toys - 0 toys = 3 toys"
+        ]
+      }
+    },
+    {
+      "id": "E006",
+      "title": "Number Bonds (5)",
+      "coreIdea": "Pairs that make 5",
+      "gifScene": "Cubes splitting 2 & 3, then 1 & 4",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Medium",
+      "estimatedTime": "20 min",
+      "prerequisites": ["E004", "E005"],
+      "learningObjectives": [
+        "Find all number pairs that make 5",
+        "Understand part-whole relationships",
+        "Develop mental math strategies"
+      ],
+      "content": {
+        "introduction": "Explore number bonds that make 5",
+        "keyConcepts": [
+          "Number bonds",
+          "Part-whole relationships",
+          "Mental math strategies"
+        ],
+        "examples": ["2 + 3 = 5", "1 + 4 = 5", "0 + 5 = 5"]
+      }
+    },
+    {
+      "id": "E007",
+      "title": "Number Bonds (10)",
+      "coreIdea": "Pairs that make 10",
+      "gifScene": "Ten-frame filling up",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Medium",
+      "estimatedTime": "25 min",
+      "prerequisites": ["E006"],
+      "learningObjectives": [
+        "Find all number pairs that make 10",
+        "Use ten-frame for visualization",
+        "Master the foundation of place value"
+      ],
+      "content": {
+        "introduction": "Master number bonds that make 10",
+        "keyConcepts": [
+          "Number bonds to 10",
+          "Ten-frame visualization",
+          "Place value foundation"
+        ],
+        "examples": ["1 + 9 = 10", "2 + 8 = 10", "5 + 5 = 10"]
+      }
+    },
+    {
+      "id": "E008",
+      "title": "Doubles (1-5)",
+      "coreIdea": "2+2, 3+3…",
+      "gifScene": "Twin dice rolling same number",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Medium",
+      "estimatedTime": "20 min",
+      "prerequisites": ["E004"],
+      "learningObjectives": [
+        "Learn doubles facts 1+1 to 5+5",
+        "Recognize patterns in doubles",
+        "Develop quick mental math"
+      ],
+      "content": {
+        "introduction": "Learn doubles facts for quick addition",
+        "keyConcepts": [
+          "Doubles facts",
+          "Pattern recognition",
+          "Mental math speed"
+        ],
+        "examples": ["1 + 1 = 2", "2 + 2 = 4", "3 + 3 = 6"]
+      }
+    },
+    {
+      "id": "E009",
+      "title": "Near Doubles (+1)",
+      "coreIdea": "3+4 via 3+3",
+      "gifScene": "3+3 dice then +1 extra",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Medium",
+      "estimatedTime": "25 min",
+      "prerequisites": ["E008"],
+      "learningObjectives": [
+        "Use doubles to solve near doubles",
+        "Understand +1 relationship",
+        "Develop mental math strategies"
+      ],
+      "content": {
+        "introduction": "Use doubles to solve near doubles problems",
+        "keyConcepts": [
+          "Near doubles strategy",
+          "+1 relationship",
+          "Mental math strategies"
+        ],
+        "examples": [
+          "3 + 4 = (3 + 3) + 1 = 7",
+          "4 + 5 = (4 + 4) + 1 = 9",
+          "2 + 3 = (2 + 2) + 1 = 5"
+        ]
+      }
+    },
+    {
+      "id": "E010",
+      "title": "Skip Count 2s",
+      "coreIdea": "2,4,6,8,10",
+      "gifScene": "Pairs of shoes appearing",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Medium",
+      "estimatedTime": "20 min",
+      "prerequisites": ["E001"],
+      "learningObjectives": [
+        "Skip count by 2s up to 20",
+        "Recognize even number patterns",
+        "Develop multiplication foundation"
+      ],
+      "content": {
+        "introduction": "Learn to skip count by 2s",
+        "keyConcepts": [
+          "Skip counting",
+          "Even numbers",
+          "Multiplication foundation"
+        ],
+        "examples": [
+          "2, 4, 6, 8, 10, 12, 14, 16, 18, 20",
+          "Counting pairs of objects",
+          "Even number sequences"
+        ]
+      }
+    },
+    {
+      "id": "E011",
+      "title": "Skip Count 5s",
+      "coreIdea": "5,10,15,20",
+      "gifScene": "Hand fingers lighting up 5-10-15",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Medium",
+      "estimatedTime": "20 min",
+      "prerequisites": ["E001"],
+      "learningObjectives": [
+        "Skip count by 5s up to 50",
+        "Use hands for counting by 5s",
+        "Develop multiplication foundation"
+      ],
+      "content": {
+        "introduction": "Learn to skip count by 5s using your hands",
+        "keyConcepts": [
+          "Skip counting by 5s",
+          "Hand counting",
+          "Multiplication foundation"
+        ],
+        "examples": [
+          "5, 10, 15, 20, 25, 30, 35, 40, 45, 50",
+          "Counting fingers on hands",
+          "Nickel counting (5 cents)"
+        ]
+      }
+    },
+    {
+      "id": "E012",
+      "title": "Odd vs Even",
+      "coreIdea": "Pairing socks",
+      "gifScene": "Socks paired; one lonely sock",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Medium",
+      "estimatedTime": "20 min",
+      "prerequisites": ["E010"],
+      "learningObjectives": [
+        "Identify odd and even numbers",
+        "Understand pairing concept",
+        "Recognize odd/even patterns"
+      ],
+      "content": {
+        "introduction": "Learn the difference between odd and even numbers",
+        "keyConcepts": ["Odd numbers", "Even numbers", "Pairing concept"],
+        "examples": [
+          "Even: 2, 4, 6, 8, 10 (can be paired)",
+          "Odd: 1, 3, 5, 7, 9 (one left over)",
+          "Sock pairing demonstration"
+        ]
+      }
+    },
+    {
+      "id": "E013",
+      "title": "Place Value Tens",
+      "coreIdea": "Bundling sticks",
+      "gifScene": "10 sticks → 1 bundle",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Hard",
+      "estimatedTime": "30 min",
+      "prerequisites": ["E007"],
+      "learningObjectives": [
+        "Understand tens place value",
+        "Bundle groups of 10",
+        "Read and write numbers 10-99"
+      ],
+      "content": {
+        "introduction": "Learn about tens place value through bundling",
+        "keyConcepts": [
+          "Tens place",
+          "Bundling groups of 10",
+          "Two-digit numbers"
+        ],
+        "examples": [
+          "23 = 2 tens + 3 ones",
+          "Bundling 10 sticks together",
+          "Reading numbers 10-99"
+        ]
+      }
+    },
+    {
+      "id": "E014",
+      "title": "Place Value Ones",
+      "coreIdea": "Loose sticks",
+      "gifScene": "23 sticks split 2 bundles + 3",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Hard",
+      "estimatedTime": "30 min",
+      "prerequisites": ["E013"],
+      "learningObjectives": [
+        "Understand ones place value",
+        "Decompose two-digit numbers",
+        "Write numbers in expanded form"
+      ],
+      "content": {
+        "introduction": "Learn about ones place value and number decomposition",
+        "keyConcepts": ["Ones place", "Number decomposition", "Expanded form"],
+        "examples": ["23 = 20 + 3", "45 = 40 + 5", "67 = 60 + 7"]
+      }
+    },
+    {
+      "id": "E015",
+      "title": "Comparing Numbers",
+      "coreIdea": "<, >, =",
+      "gifScene": "Two towers growing side-by-side",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Medium",
+      "estimatedTime": "25 min",
+      "prerequisites": ["E001"],
+      "learningObjectives": [
+        "Compare numbers using <, >, =",
+        "Understand greater than and less than",
+        "Order numbers from least to greatest"
+      ],
+      "content": {
+        "introduction": "Learn to compare numbers using symbols",
+        "keyConcepts": ["Greater than (>)", "Less than (<)", "Equal to (=)"],
+        "examples": [
+          "5 > 3 (5 is greater than 3)",
+          "2 < 7 (2 is less than 7)",
+          "4 = 4 (4 equals 4)"
+        ]
+      }
+    },
+    {
+      "id": "E016",
+      "title": "Ordinal Numbers",
+      "coreIdea": "1st, 2nd, 3rd…",
+      "gifScene": "Race cars crossing finish line",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Medium",
+      "estimatedTime": "25 min",
+      "prerequisites": ["E001"],
+      "learningObjectives": [
+        "Use ordinal numbers 1st through 10th",
+        "Understand position and order",
+        "Apply ordinal numbers in real contexts"
+      ],
+      "content": {
+        "introduction": "Learn ordinal numbers for describing position and order",
+        "keyConcepts": [
+          "Ordinal numbers",
+          "Position and order",
+          "Real-world applications"
+        ],
+        "examples": [
+          "1st, 2nd, 3rd, 4th, 5th",
+          "Race positions",
+          "Birthday order"
+        ]
+      }
+    },
+    {
+      "id": "E017",
+      "title": "Basic 2-D Shapes",
+      "coreIdea": "Circle, square, triangle",
+      "gifScene": "Morphing outline animation",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Easy",
+      "estimatedTime": "20 min",
+      "prerequisites": [],
+      "learningObjectives": [
+        "Identify basic 2-D shapes",
+        "Recognize shape properties",
+        "Draw simple shapes"
+      ],
+      "content": {
+        "introduction": "Learn about basic two-dimensional shapes",
+        "keyConcepts": ["2-D shapes", "Shape properties", "Shape recognition"],
+        "examples": [
+          "Circle: round, no corners",
+          "Square: 4 equal sides, 4 corners",
+          "Triangle: 3 sides, 3 corners"
+        ]
+      }
+    },
+    {
+      "id": "E018",
+      "title": "Basic 3-D Shapes",
+      "coreIdea": "Cube, sphere",
+      "gifScene": "Rotating 3-D wireframe",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Medium",
+      "estimatedTime": "25 min",
+      "prerequisites": ["E017"],
+      "learningObjectives": [
+        "Identify basic 3-D shapes",
+        "Understand 3-D vs 2-D",
+        "Recognize real-world 3-D objects"
+      ],
+      "content": {
+        "introduction": "Explore three-dimensional shapes",
+        "keyConcepts": ["3-D shapes", "Volume and space", "Real-world objects"],
+        "examples": [
+          "Cube: box-like shape",
+          "Sphere: ball-like shape",
+          "Cylinder: can-like shape"
+        ]
+      }
+    },
+    {
+      "id": "E019",
+      "title": "Symmetry",
+      "coreIdea": "Folding paper",
+      "gifScene": "Butterfly wings folding together",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Medium",
+      "estimatedTime": "25 min",
+      "prerequisites": ["E017"],
+      "learningObjectives": [
+        "Understand line of symmetry",
+        "Identify symmetrical shapes",
+        "Create symmetrical patterns"
+      ],
+      "content": {
+        "introduction": "Learn about symmetry and balance in shapes",
+        "keyConcepts": [
+          "Line of symmetry",
+          "Symmetrical shapes",
+          "Balance and patterns"
+        ],
+        "examples": ["Butterfly wings", "Folding paper", "Mirror images"]
+      }
+    },
+    {
+      "id": "E020",
+      "title": "Patterns ABAB",
+      "coreIdea": "Red-blue-red-blue tiles",
+      "gifScene": "Color tiles flashing pattern",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Easy",
+      "estimatedTime": "20 min",
+      "prerequisites": [],
+      "learningObjectives": [
+        "Recognize ABAB patterns",
+        "Continue simple patterns",
+        "Create own patterns"
+      ],
+      "content": {
+        "introduction": "Learn to recognize and create simple patterns",
+        "keyConcepts": [
+          "Pattern recognition",
+          "Pattern continuation",
+          "Pattern creation"
+        ],
+        "examples": [
+          "Red, blue, red, blue...",
+          "Circle, square, circle, square...",
+          "1, 2, 1, 2..."
+        ]
+      }
+    },
+    {
+      "id": "E021",
+      "title": "Length (cm)",
+      "coreIdea": "Measuring with ruler",
+      "gifScene": "Pencil sliding under ruler",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Medium",
+      "estimatedTime": "25 min",
+      "prerequisites": ["E001"],
+      "learningObjectives": [
+        "Measure length in centimeters",
+        "Use a ruler correctly",
+        "Compare lengths"
+      ],
+      "content": {
+        "introduction": "Learn to measure length using centimeters",
+        "keyConcepts": [
+          "Centimeter measurement",
+          "Ruler usage",
+          "Length comparison"
+        ],
+        "examples": [
+          "Measuring pencil length",
+          "Comparing object sizes",
+          "Using centimeter ruler"
+        ]
+      }
+    },
+    {
+      "id": "E022",
+      "title": "Weight (kg)",
+      "coreIdea": "Balance scale",
+      "gifScene": "Apples on scale tilting",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Medium",
+      "estimatedTime": "25 min",
+      "prerequisites": ["E001"],
+      "learningObjectives": [
+        "Understand weight concept",
+        "Use balance scale",
+        "Compare weights"
+      ],
+      "content": {
+        "introduction": "Learn about weight and how to measure it",
+        "keyConcepts": ["Weight concept", "Balance scale", "Weight comparison"],
+        "examples": [
+          "Weighing apples",
+          "Comparing object weights",
+          "Using balance scale"
+        ]
+      }
+    },
+    {
+      "id": "E023",
+      "title": "Capacity (L)",
+      "coreIdea": "Filling jug",
+      "gifScene": "Water pouring into measuring jug",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Medium",
+      "estimatedTime": "25 min",
+      "prerequisites": ["E001"],
+      "learningObjectives": [
+        "Understand capacity concept",
+        "Measure liquid volume",
+        "Compare capacities"
+      ],
+      "content": {
+        "introduction": "Learn about capacity and liquid measurement",
+        "keyConcepts": [
+          "Capacity concept",
+          "Liquid measurement",
+          "Volume comparison"
+        ],
+        "examples": [
+          "Measuring water in jug",
+          "Comparing container sizes",
+          "Using measuring cups"
+        ]
+      }
+    },
+    {
+      "id": "E024",
+      "title": "Telling Time O'Clock",
+      "coreIdea": "Clock hands",
+      "gifScene": "Hour hand snaps to 3, 6, 9, 12",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Medium",
+      "estimatedTime": "30 min",
+      "prerequisites": ["E001"],
+      "learningObjectives": [
+        "Tell time to the hour",
+        "Read analog clock",
+        "Understand hour hand movement"
+      ],
+      "content": {
+        "introduction": "Learn to tell time to the hour on an analog clock",
+        "keyConcepts": ["Hour hand", "Clock reading", "Time to the hour"],
+        "examples": ["3 o'clock", "6 o'clock", "12 o'clock"]
+      }
+    },
+    {
+      "id": "E025",
+      "title": "Telling Time Half-Hour",
+      "coreIdea": "Clock hands",
+      "gifScene": "3:00 → 3:30, minute hand half-circle",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Medium",
+      "estimatedTime": "30 min",
+      "prerequisites": ["E024"],
+      "learningObjectives": [
+        "Tell time to the half-hour",
+        "Understand minute hand",
+        "Read half-past times"
+      ],
+      "content": {
+        "introduction": "Learn to tell time to the half-hour",
+        "keyConcepts": ["Half-hour times", "Minute hand", "Half-past concept"],
+        "examples": [
+          "3:30 (half past 3)",
+          "6:30 (half past 6)",
+          "12:30 (half past 12)"
+        ]
+      }
+    },
+    {
+      "id": "E026",
+      "title": "Coins & Money",
+      "coreIdea": "Penny, nickel, dime",
+      "gifScene": "Coins stacking to 25¢",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Medium",
+      "estimatedTime": "30 min",
+      "prerequisites": ["E001", "E010"],
+      "learningObjectives": [
+        "Identify common coins",
+        "Count coin values",
+        "Make simple purchases"
+      ],
+      "content": {
+        "introduction": "Learn about coins and basic money concepts",
+        "keyConcepts": ["Coin identification", "Coin values", "Money counting"],
+        "examples": ["Penny = 1¢", "Nickel = 5¢", "Dime = 10¢"]
+      }
+    },
+    {
+      "id": "E027",
+      "title": "Simple Fractions ½",
+      "coreIdea": "Pizza slicing",
+      "gifScene": "Pizza half-cut animation",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Hard",
+      "estimatedTime": "30 min",
+      "prerequisites": ["E001", "E004"],
+      "learningObjectives": [
+        "Understand half concept",
+        "Recognize ½ symbol",
+        "Divide objects into halves"
+      ],
+      "content": {
+        "introduction": "Learn about halves and simple fractions",
+        "keyConcepts": ["Half concept", "Fraction symbol ½", "Equal parts"],
+        "examples": ["Half a pizza", "Half an apple", "Half a circle"]
+      }
+    },
+    {
+      "id": "E028",
+      "title": "Simple Fractions ¼",
+      "coreIdea": "Four equal slices",
+      "gifScene": "Pizza quartered",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Hard",
+      "estimatedTime": "30 min",
+      "prerequisites": ["E027"],
+      "learningObjectives": [
+        "Understand quarter concept",
+        "Recognize ¼ symbol",
+        "Divide objects into quarters"
+      ],
+      "content": {
+        "introduction": "Learn about quarters and the fraction ¼",
+        "keyConcepts": [
+          "Quarter concept",
+          "Fraction symbol ¼",
+          "Four equal parts"
+        ],
+        "examples": [
+          "Quarter of a pizza",
+          "Quarter of an apple",
+          "Quarter of a dollar"
+        ]
+      }
+    },
+    {
+      "id": "E029",
+      "title": "Bar Graphs",
+      "coreIdea": "Daily fruit count",
+      "gifScene": "Bars rising for apples/bananas",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Medium",
+      "estimatedTime": "30 min",
+      "prerequisites": ["E001", "E015"],
+      "learningObjectives": [
+        "Read simple bar graphs",
+        "Compare quantities visually",
+        "Understand data representation"
+      ],
+      "content": {
+        "introduction": "Learn to read and understand bar graphs",
+        "keyConcepts": [
+          "Bar graphs",
+          "Data visualization",
+          "Quantity comparison"
+        ],
+        "examples": [
+          "Favorite fruits graph",
+          "Daily weather graph",
+          "Class pet preferences"
+        ]
+      }
+    },
+    {
+      "id": "E030",
+      "title": "Line Plots",
+      "coreIdea": "Measuring shoe sizes",
+      "gifScene": "X marks stacking above ruler",
+      "gifDuration": 3,
+      "gifSize": "480×480",
+      "difficulty": "Medium",
+      "estimatedTime": "30 min",
+      "prerequisites": ["E029"],
+      "learningObjectives": [
+        "Read simple line plots",
+        "Count data points",
+        "Find most common values"
+      ],
+      "content": {
+        "introduction": "Learn to read and interpret line plots",
+        "keyConcepts": ["Line plots", "Data counting", "Frequency analysis"],
+        "examples": [
+          "Shoe sizes in class",
+          "Heights of students",
+          "Number of pets"
+        ]
+      }
+    }
+  ]
+}

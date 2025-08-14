@@ -16,7 +16,7 @@ export default function ThemeProvider({ children }) {
     finalTheme = mode === 'dark' ? dark : light;
   }
 
-  finalTheme = light;
+  // finalTheme = dark;
 
   // Tell ExpoSystemUI to match the navigation bar (optional but nice)
   React.useEffect(() => {

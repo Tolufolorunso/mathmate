@@ -8,6 +8,8 @@ const AppBar = (props) => {
     elevated = false,
     backButton = false,
     title,
+    titleCenter = false,
+    titleBold = false,
     show = false,
     isSwitchOn = false,
     onToggleSwitch = () => {},
@@ -18,7 +20,13 @@ const AppBar = (props) => {
   return (
     <Appbar.Header elevated={elevated} {...rest}>
       {backButton && <Appbar.BackAction onPress={() => router.back()} />}
-      <Appbar.Content title={title} />
+      <Appbar.Content
+        title={title}
+        titleStyle={{
+          textAlign: titleCenter ? 'center' : 'left',
+          fontWeight: titleBold ? 'bold' : 'normal',
+        }}
+      />
       {show && (
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
           <Text>{isSwitchOn ? 'Camera' : 'Keyboard'}</Text>

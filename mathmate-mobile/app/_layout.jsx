@@ -6,6 +6,9 @@ export default function RootLayout() {
     <ThemeProvider>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name='(tabs)' />
+        <Stack.Screen name='(screens)/history' />
+        <Stack.Screen name='(screens)/help' />
+        <Stack.Screen name='(screens)/language' />
       </Stack>
     </ThemeProvider>
   );
