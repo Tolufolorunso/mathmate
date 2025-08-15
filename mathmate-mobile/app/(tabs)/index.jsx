@@ -17,6 +17,8 @@ export default function HomeScreen() {
   const { getQuestionHistory } = useMathStore();
   const questionHistory = getQuestionHistory();
 
+  console.log(questionHistory[0]?.result?.data.content);
+
   const styles = homeStyles();
 
   const quickStats = [

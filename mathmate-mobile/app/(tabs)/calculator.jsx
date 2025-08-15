@@ -484,7 +484,7 @@ export default function CalculatorScreen() {
               {
                 key: 'calculus',
                 label: 'Calculus',
-                icon: 'integral',
+                icon: 'math-integral',
                 description: 'Derivatives & integrals',
               },
               {

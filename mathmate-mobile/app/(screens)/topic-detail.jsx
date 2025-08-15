@@ -1,4 +1,9 @@
-import { useRouter } from 'expo-router';
+import {
+  useGlobalSearchParams,
+  useLocalSearchParams,
+  useRouter,
+} from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
 import {
@@ -11,28 +16,48 @@ import {
   Text,
   useTheme,
 } from 'react-native-paper';
+import ScreenWrapper from '../../components/ScreenWrapper';
+import { AppBar, AppText } from '../../components/ui';
+
+import { horizontalScale, verticalScale } from '../../style/scaling';
 
 const { width } = Dimensions.get('window');
 
 export default function TopicDetailScreen({ route }) {
   const theme = useTheme();
   const router = useRouter();
-  const { topic, level } = route.params || {};
+  // const { topic, level } = route?.params || {};
+  const glob = useGlobalSearchParams();
+  const local = useLocalSearchParams();
+
+  // console.log('Local:', local, 'Global:', glob);
 
   const [currentSection, setCurrentSection] = useState('lesson'); // lesson, practice, quiz
   const [lessonProgress, setLessonProgress] = useState(0);
   const [practiceScore, setPracticeScore] = useState(0);
   const [quizScore, setQuizScore] = useState(0);
 
-  if (!topic) {
+  if (!true) {
     return (
-      <View
-        style={[styles.container, { backgroundColor: theme.colors.background }]}
-      >
-        <Text variant='headlineMedium'>Topic not found</Text>
-      </View>
+      <>
+        <AppBar backButton title='Topic not found' />
+        <ScreenWrapper
+          style={[
+            styles.container,
+            { backgroundColor: theme.colors.background },
+          ]}
+        >
+          <AppText headlineMedium>Topic not found</AppText>
+        </ScreenWrapper>
+      </>
     );
   }
+
+  const topics = require('../../data/elementaryTopics.json');
+
+  const topic = topics.topics[0];
+
+  console.log(topic);
 
   const sections = [
     {
@@ -66,7 +91,7 @@ export default function TopicDetailScreen({ route }) {
             variant='headlineSmall'
             style={[styles.sectionTitle, { color: theme.colors.onSurface }]}
           >
-            {topic.title}
+            {topic?.title}
           </Text>
 
           <View style={styles.topicMeta}>
@@ -399,94 +424,81 @@ export default function TopicDetailScreen({ route }) {
   );
 
   return (
-    <View
-      style={[styles.container, { backgroundColor: theme.colors.background }]}
-    >
-      {/* Header */}
-      <View style={[styles.header, { backgroundColor: theme.colors.surface }]}>
-        <IconButton
-          icon='arrow-left'
-          size={24}
-          onPress={() => router.back()}
-          iconColor={theme.colors.onSurface}
-        />
-        <Text
-          variant='titleLarge'
-          style={[styles.headerTitle, { color: theme.colors.onSurface }]}
-        >
-          {topic.title}
-        </Text>
-        <View style={{ width: 48 }} />
-      </View>
-
-      {/* Navigation Tabs */}
-      <View style={[styles.tabs, { backgroundColor: theme.colors.surface }]}>
-        {sections.map((section) => (
-          <Button
-            key={section.id}
-            mode={currentSection === section.id ? 'contained' : 'text'}
-            onPress={() => setCurrentSection(section.id)}
-            icon={section.icon}
-            style={[
-              styles.tabButton,
-              currentSection === section.id && {
-                backgroundColor: section.color,
-              },
-            ]}
-            labelStyle={[
-              styles.tabLabel,
-              {
-                color:
-                  currentSection === section.id
-                    ? '#fff'
-                    : theme.colors.onSurface,
-              },
-            ]}
-            compact
-          >
-            {section.title}
-          </Button>
-        ))}
-      </View>
-
-      {/* Content */}
-      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
-        {currentSection === 'lesson' && renderLessonSection()}
-        {currentSection === 'practice' && renderPracticeSection()}
-        {currentSection === 'quiz' && renderQuizSection()}
-      </ScrollView>
-
-      {/* Bottom Actions */}
+    <>
+      <StatusBar />
+      <AppBar backButton title={topic.title} />
       <View
-        style={[
-          styles.bottomActions,
-          { backgroundColor: theme.colors.surface },
-        ]}
+        style={[styles.container, { backgroundColor: theme.colors.background }]}
       >
-        <Button
-          mode='outlined'
-          onPress={() => router.back()}
-          style={styles.bottomButton}
+        {/* Navigation Tabs */}
+        <View style={[styles.tabs, { backgroundColor: theme.colors.surface }]}>
+          {sections.map((section) => (
+            <Button
+              key={section.id}
+              mode={currentSection === section.id ? 'contained' : 'text'}
+              onPress={() => setCurrentSection(section.id)}
+              icon={section.icon}
+              style={[
+                styles.tabButton,
+                currentSection === section.id && {
+                  backgroundColor: section.color,
+                },
+              ]}
+              labelStyle={[
+                styles.tabLabel,
+                {
+                  color:
+                    currentSection === section.id
+                      ? '#fff'
+                      : theme.colors.onSurface,
+                },
+              ]}
+              compact
+            >
+              {section.title}
+            </Button>
+          ))}
+        </View>
+
+        {/* Content */}
+        <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+          {currentSection === 'lesson' && renderLessonSection()}
+          {currentSection === 'practice' && renderPracticeSection()}
+          {currentSection === 'quiz' && renderQuizSection()}
+        </ScrollView>
+
+        {/* Bottom Actions */}
+        <View
+          style={[
+            styles.bottomActions,
+            { backgroundColor: theme.colors.surface },
+          ]}
         >
-          Back to Topics
-        </Button>
-        <Button
-          mode='contained'
-          onPress={() => {
-            if (currentSection === 'lesson') setCurrentSection('practice');
-            else if (currentSection === 'practice') setCurrentSection('quiz');
-            else router.back();
-          }}
-          style={styles.bottomButton}
-        >
-          {currentSection === 'lesson'
-            ? 'Start Practice'
-            : currentSection === 'practice'
-            ? 'Take Quiz'
-            : 'Complete Topic'}
-        </Button>
+          <Button
+            mode='outlined'
+            onPress={() => router.back()}
+            style={styles.bottomButton}
+          >
+            Back to Topics
+          </Button>
+          <Button
+            mode='contained'
+            onPress={() => {
+              if (currentSection === 'lesson') setCurrentSection('practice');
+              else if (currentSection === 'practice') setCurrentSection('quiz');
+              else router.back();
+            }}
+            style={styles.bottomButton}
+          >
+            {currentSection === 'lesson'
+              ? 'Start Practice'
+              : currentSection === 'practice'
+              ? 'Take Quiz'
+              : 'Complete Topic'}
+          </Button>
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
@@ -509,13 +521,13 @@ const styles = StyleSheet.create({
   },
   tabs: {
     flexDirection: 'row',
-    paddingHorizontal: 16,
     paddingVertical: 8,
+    paddingHorizontal: verticalScale(16),
     elevation: 1,
   },
   tabButton: {
     flex: 1,
-    marginHorizontal: 4,
+    marginHorizontal: horizontalScale(4),
     borderRadius: 8,
   },
   tabLabel: {
@@ -524,13 +536,14 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    padding: 16,
+    paddingVertical: 16,
+    // paddingHorizontal: horizontalScale(16),
   },
   section: {
     marginBottom: 16,
   },
   lessonCard: {
-    borderRadius: 16,
+    borderRadius: 0,
   },
   sectionTitle: {
     fontWeight: '600',
@@ -626,6 +639,7 @@ const styles = StyleSheet.create({
     padding: 16,
     gap: 12,
     elevation: 4,
+    marginBottom: 30,
   },
   bottomButton: {
     flex: 1,

@@ -9,6 +9,7 @@ export default function RootLayout() {
         <Stack.Screen name='(screens)/history' />
         <Stack.Screen name='(screens)/help' />
         <Stack.Screen name='(screens)/language' />
+        <Stack.Screen name='(screens)/solution' />
       </Stack>
     </ThemeProvider>
   );

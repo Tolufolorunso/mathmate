@@ -1,22 +1,18 @@
 import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { Dimensions, View } from 'react-native';
-import {
-  Button,
-  Card,
-  Chip,
-  Modal,
-  Portal,
-  ProgressBar,
-  Text,
-  useTheme,
-} from 'react-native-paper';
+import { Dimensions } from 'react-native';
+import { useTheme } from 'react-native-paper';
 import ScreenWrapper from '../../components/ScreenWrapper';
-import AppBar from '../../components/ui/AppBar';
+import { AppBar } from '../../components/ui';
 
-import { LearnHeaderSection } from '../../components/learn/LearnHeaderSection';
-import { LearnLearningTips } from '../../components/learn/LearnLearningTips';
-import { LearnLevelSelection } from '../../components/learn/LearnLevelSelection';
+import {
+  LearnHeaderSection,
+  LearnLearningTips,
+  LearnLevelSelection,
+  LearnTopicModal,
+  LearnTopics,
+} from '../../components/learn';
+
 import topicsData from '../../data/elementaryTopics.json';
 import learnStyle from '../../style/learn.style';
 
@@ -325,14 +321,15 @@ export default function LearnScreen() {
     setSelectedTopic(null);
   };
 
-  const startLearning = () => {
+  const startLearning = (id) => {
+    // console.log(selectedTopic);
     if (selectedTopic) {
       closeTopicModal();
       // Navigate to topic detail screen with the selected topic
       router.push({
         pathname: '/topic-detail',
         params: {
-          topic: selectedTopic,
+          topic: id,
           level: selectedLevel,
         },
       });
@@ -433,277 +430,35 @@ export default function LearnScreen() {
         />
 
         {/* Topics for Selected Level */}
-        <View style={styles.topicsSection}>
-          <View style={styles.topicsHeader}>
-            <Text
-              variant='headlineMedium'
-              style={[styles.sectionTitle, { color: theme.colors.onSurface }]}
-            >
-              {currentLevel.title} Topics
-            </Text>
-            <View style={styles.topicsHeaderRight}>
-              <Chip mode='outlined' icon='book-open'>
-                {filteredTopics.length} Available Topics
-              </Chip>
-              <Button
-                mode={showCompletedTopics ? 'contained' : 'outlined'}
-                onPress={() => setShowCompletedTopics(!showCompletedTopics)}
-                icon={showCompletedTopics ? 'eye-off' : 'eye'}
-                compact
-                style={styles.filterButton}
-              >
-                {showCompletedTopics ? 'Hide Completed' : 'Show All'}
-              </Button>
-            </View>
-          </View>
-
-          {/* Topics Grid */}
-          <View style={styles.topicsGrid}>
-            {currentTopics.map((topic, index) => {
-              const completionStatus = getCompletionStatus(topic);
-              return (
-                <Card
-                  key={topic.id || index}
-                  style={[
-                    styles.topicCard,
-                    { backgroundColor: theme.colors.surface },
-                    topic.completed && {
-                      backgroundColor: theme.colors.successContainer + '20',
-                    },
-                  ]}
-                  elevation={2}
-                  onPress={() => openTopic(topic)}
-                >
-                  <Card.Content style={styles.topicCardContent}>
-                    {/* Completion Status Badge */}
-                    <View style={styles.completionBadge}>
-                      <Chip
-                        mode='outlined'
-                        style={[
-                          styles.statusChip,
-                          { borderColor: completionStatus.color },
-                        ]}
-                        textStyle={{ color: completionStatus.color }}
-                        icon={completionStatus.icon}
-                        compact
-                      >
-                        {completionStatus.text}
-                      </Chip>
-                    </View>
-
-                    {/* Topic Title */}
-                    <Text
-                      variant='titleMedium'
-                      style={[
-                        styles.topicTitle,
-                        { color: theme.colors.onSurface },
-                      ]}
-                      numberOfLines={2}
-                    >
-                      {topic.title}
-                    </Text>
-
-                    {/* Topic Meta */}
-                    <View style={styles.topicMeta}>
-                      <Chip
-                        mode='outlined'
-                        style={[
-                          styles.difficultyChip,
-                          {
-                            borderColor: getDifficultyColor(topic.difficulty),
-                          },
-                        ]}
-                        textStyle={{
-                          color: getDifficultyColor(topic.difficulty),
-                        }}
-                        compact
-                      >
-                        {topic.difficulty}
-                      </Chip>
-                      <Text
-                        variant='bodySmall'
-                        style={[
-                          styles.topicTime,
-                          { color: theme.colors.onSurfaceVariant },
-                        ]}
-                      >
-                        ⏱️ {topic.time || topic.estimatedTime}
-                      </Text>
-                    </View>
-
-                    {/* Progress Section */}
-                    <View style={styles.progressSection}>
-                      <View style={styles.progressInfo}>
-                        <Text
-                          variant='bodySmall'
-                          style={{ color: theme.colors.onSurfaceVariant }}
-                        >
-                          Progress
-                        </Text>
-                        <Text
-                          variant='bodySmall'
-                          style={{ color: theme.colors.onSurface }}
-                        >
-                          {Math.round((topic.progress || 0) * 100)}%
-                        </Text>
-                      </View>
-                      <ProgressBar
-                        progress={topic.progress || 0}
-                        color={completionStatus.color}
-                        style={styles.progressBar}
-                      />
-                    </View>
-
-                    {/* Additional Info */}
-                    {topic.lastAccessed && (
-                      <View style={styles.additionalInfo}>
-                        <Text
-                          variant='bodySmall'
-                          style={{ color: theme.colors.onSurfaceVariant }}
-                        >
-                          Last: {formatLastAccessed(topic.lastAccessed)}
-                        </Text>
-                        {topic.timeSpent > 0 && (
-                          <Text
-                            variant='bodySmall'
-                            style={{ color: theme.colors.onSurfaceVariant }}
-                          >
-                            Time: {topic.timeSpent} min
-                          </Text>
-                        )}
-                      </View>
-                    )}
-                  </Card.Content>
-                </Card>
-              );
-            })}
-          </View>
-
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <View style={styles.pagination}>
-              <Button
-                mode='outlined'
-                onPress={prevPage}
-                disabled={currentPage === 1}
-                icon='chevron-left'
-                compact
-              >
-                Previous
-              </Button>
-
-              <View style={styles.pageNumbers}>
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                  (page) => (
-                    <Button
-                      key={page}
-                      mode={currentPage === page ? 'contained' : 'text'}
-                      onPress={() => goToPage(page)}
-                      compact
-                      style={styles.pageButton}
-                    >
-                      {page}
-                    </Button>
-                  )
-                )}
-              </View>
-
-              <Button
-                mode='outlined'
-                onPress={nextPage}
-                disabled={currentPage === totalPages}
-                icon='chevron-right'
-                compact
-              >
-                Next
-              </Button>
-            </View>
-          )}
-
-          {/* Page Info */}
-          <View style={styles.pageInfo}>
-            <Text
-              variant='bodySmall'
-              style={{ color: theme.colors.onSurfaceVariant }}
-            >
-              Showing {startIndex + 1}-
-              {Math.min(endIndex, filteredTopics.length)} of{' '}
-              {filteredTopics.length} topics
-            </Text>
-          </View>
-        </View>
+        <LearnTopics
+          showCompletedTopics={showCompletedTopics}
+          setShowCompletedTopics={setShowCompletedTopics}
+          getCompletionStatus={getCompletionStatus}
+          openTopic={openTopic}
+          getDifficultyColor={getDifficultyColor}
+          formatLastAccessed={formatLastAccessed}
+          totalPages={totalPages}
+          prevPage={prevPage}
+          currentPage={currentPage}
+          goToPage={goToPage}
+          nextPage={nextPage}
+          startIndex={startIndex}
+          endIndex={endIndex}
+          currentLevel={currentLevel}
+          filteredTopics={filteredTopics}
+          currentTopics={currentTopics}
+        />
 
         {/* Learning Tips */}
         <LearnLearningTips />
 
         {/* Topic Modal */}
-        <Portal>
-          <Modal
-            visible={showTopicModal}
-            onDismiss={closeTopicModal}
-            contentContainerStyle={[
-              styles.modal,
-              { backgroundColor: theme.colors.surface },
-            ]}
-          >
-            {selectedTopic && (
-              <>
-                <Text
-                  variant='headlineSmall'
-                  style={{ marginBottom: 20, textAlign: 'center' }}
-                >
-                  {selectedTopic.title}
-                </Text>
-
-                <View style={styles.modalContent}>
-                  <View style={styles.modalInfo}>
-                    <Chip mode='outlined' style={{ marginBottom: 8 }}>
-                      Difficulty: {selectedTopic.difficulty}
-                    </Chip>
-                    <Chip mode='outlined' style={{ marginBottom: 8 }}>
-                      Duration:{' '}
-                      {selectedTopic.time || selectedTopic.estimatedTime}
-                    </Chip>
-                    <Chip mode='outlined'>
-                      Progress:{' '}
-                      {Math.round((selectedTopic.progress || 0) * 100)}%
-                    </Chip>
-                  </View>
-
-                  <Text
-                    variant='bodyMedium'
-                    style={{
-                      marginBottom: 20,
-                      textAlign: 'center',
-                      opacity: 0.8,
-                    }}
-                  >
-                    Ready to start learning? This topic includes interactive
-                    lessons, practice problems, and step-by-step solutions.
-                  </Text>
-                </View>
-
-                <View style={styles.modalActions}>
-                  <Button
-                    mode='outlined'
-                    onPress={closeTopicModal}
-                    style={{ flex: 1, marginRight: 8 }}
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    mode='contained'
-                    onPress={startLearning}
-                    style={{ flex: 1, marginLeft: 8 }}
-                    icon='play'
-                  >
-                    Start Learning
-                  </Button>
-                </View>
-              </>
-            )}
-          </Modal>
-        </Portal>
+        <LearnTopicModal
+          showTopicModal={showTopicModal}
+          closeTopicModal={closeTopicModal}
+          selectedTopic={selectedTopic}
+          startLearning={startLearning}
+        />
       </ScreenWrapper>
     </>
   );
