@@ -4,6 +4,9 @@
 mathemate-api/node_modules/
 node_modules/
 
+mathemate-api/.env
+node_modules/
+
 # Expo
 .expo/
 dist/
