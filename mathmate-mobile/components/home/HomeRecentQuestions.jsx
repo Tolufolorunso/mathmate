@@ -11,6 +11,11 @@ export function HomeRecentQuestions({ questions, index }) {
   const styles = homeStyles();
   const router = useRouter();
   const { setSolutionContent } = useMathStore();
+
+  if (!questions.length) {
+    return;
+  }
+
   return (
     <View style={styles.recentSection}>
       <View style={styles.recentHeader}>

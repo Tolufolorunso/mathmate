@@ -1,4 +1,3 @@
-import { useRouter } from 'expo-router';
 import { View } from 'react-native';
 import { Card, Icon, Text, useTheme } from 'react-native-paper';
 import { FeaturesComponent } from '../../components/home/FeaturesComponent';
@@ -13,11 +12,8 @@ import homeStyles from '../../style/home.style';
 
 export default function HomeScreen() {
   const theme = useTheme();
-  const router = useRouter();
   const { getQuestionHistory } = useMathStore();
   const questionHistory = getQuestionHistory();
-
-  console.log(questionHistory[0]?.result?.data.content);
 
   const styles = homeStyles();
 

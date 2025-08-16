@@ -4,7 +4,8 @@ import { Alert } from 'react-native';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
-const API_URL = 'http://192.168.1.240:4000/api/solutions'; // <— replace with actual
+// const API_URL = 'http://192.168.1.240:4000/api/solutions';
+const API_URL = 'http://localhost:4000/api/solutions';
 
 export const useMathStore = create(
   persist(
@@ -54,7 +55,8 @@ export const useMathStore = create(
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               type: 'image',
-              imageBase64: base64,
+              base64Data: base64,
+              mimeType: 'image/jpeg',
             }),
           });
 
@@ -91,7 +93,7 @@ export const useMathStore = create(
 
       /* 3️⃣  upload typed question to server */
       uploadTypedQuestion: async (question, questionType = 'general') => {
-        console.log('calling');
+        console.log('95 uploadtype', 'calling');
         if (!question.trim()) {
           Alert.alert('Error', 'Please enter a question first.');
           return;
@@ -105,7 +107,7 @@ export const useMathStore = create(
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               type: 'text',
-              question: question.trim(),
+              problem: question.trim(),
               questionType: questionType,
             }),
           });
@@ -166,9 +168,53 @@ export const useMathStore = create(
         return get().questionHistory.find((q) => q.id === id);
       },
 
-      /* 6️⃣  clear question history */
-      clearHistory: () => {
+      deleteHistoryItem: async (id) => {
+        const { questionHistory } = get();
+        const filtered = questionHistory.filter((item) => item.id !== id);
+
+        set({ questionHistory: filtered });
+
+        // Update AsyncStorage manually
+        try {
+          const currentPersisted = await AsyncStorage.getItem('math-store');
+          if (currentPersisted) {
+            const parsed = JSON.parse(currentPersisted);
+            parsed.state.questionHistory = filtered;
+            await AsyncStorage.setItem('math-store', JSON.stringify(parsed));
+          }
+        } catch (e) {
+          console.error('Failed to delete history item from AsyncStorage', e);
+        }
+
+        // API call to notify backend
+        try {
+          await fetch(`${API_URL}/history/${id}`, { method: 'DELETE' });
+        } catch (e) {
+          console.warn('Could not delete server-side record', e);
+        }
+      },
+
+      clearHistory: async () => {
         set({ questionHistory: [] });
+
+        // Update AsyncStorage manually
+        try {
+          const currentPersisted = await AsyncStorage.getItem('math-store');
+          if (currentPersisted) {
+            const parsed = JSON.parse(currentPersisted);
+            parsed.state.questionHistory = [];
+            await AsyncStorage.setItem('math-store', JSON.stringify(parsed));
+          }
+        } catch (e) {
+          console.error('Failed to clear history in AsyncStorage', e);
+        }
+
+        //API call
+        // try {
+        //   await fetch(`${API_URL}/history`, { method: 'DELETE' });
+        // } catch (e) {
+        //   console.warn('Could not clear server-side history', e);
+        // }
       },
 
       /* 7️⃣  reset state */

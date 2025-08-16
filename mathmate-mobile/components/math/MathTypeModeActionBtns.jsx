@@ -28,7 +28,7 @@ export function MathTypeModeActionBtns({
         disabled={!question.trim() || isSubmitting}
         style={[styles.actionButton, styles.submitButton]}
       >
-        {isSubmitting ? 'Submitting...' : 'Submit Question'}
+        {isSubmitting ? 'Solving...' : 'Submit Question'}
       </Button>
     </View>
   );
