@@ -1,10 +1,10 @@
 import * as Clipboard from 'expo-clipboard';
 import { useRouter } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
-import { Alert, View } from 'react-native';
+import { Alert, ScrollView, View } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { useMathStore } from '../../store/mathStore';
-import EnhancedKeyboard from '../ui/EnhancedKeyboard';
+import { EnhancedKeyboard } from '../ui';
 import { ExamplesModal } from './ExamplesModal';
 import { MathTypeModeActionBtns } from './MathTypeModeActionBtns';
 import { MathTypeModeHeader } from './MathTypeModeHeader';
@@ -122,16 +122,20 @@ export default function MathTypeMode() {
     try {
       // This will be handled by the math store
       const result = await uploadTypedQuestion(question, questionType);
-      console.log(result);
+
       if (result.ok) {
-        // setQuestion('');
         router.push('(screens)/solution');
         return;
       }
     } catch (error) {
+      if (error.message) {
+        Alert.alert('Error', error.message);
+        return;
+      }
       Alert.alert('Error', 'Failed to submit question. Please try again.');
     } finally {
       setIsSubmitting(false);
+      setQuestion('');
     }
   };
 
@@ -178,12 +182,13 @@ export default function MathTypeMode() {
       />
 
       {/* Enhanced Keyboard */}
-      <EnhancedKeyboard
-        onPress={handleKeyPress}
-        mode={questionType}
-        angleUnit='deg'
-      />
-
+      <ScrollView>
+        <EnhancedKeyboard
+          onPress={handleKeyPress}
+          mode={questionType}
+          angleUnit='deg'
+        />
+      </ScrollView>
       {/* Question Type Selector Modal */}
       <SelectQuestionType
         showQuestionTypes={showQuestionTypes}

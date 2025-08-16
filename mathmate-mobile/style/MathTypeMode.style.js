@@ -12,12 +12,14 @@ const mathTypeModeStyle = () => {
       marginRight: 8,
     },
     questionCard: {
-      flex: 1,
+      // flex: 1,
+      maxHeight: 150,
       marginBottom: 10,
     },
     questionScroll: {
-      maxHeight: 150,
-      backgroundColor: 'red',
+      // minHeight: 150,
+      height: '80%',
+      // backgroundColor: 'red',
     },
     questionContent: {
       paddingVertical: 6,

@@ -4,30 +4,67 @@ import { Chip, Divider, Text, useTheme } from 'react-native-paper';
 const MathSolutionDisplay = ({ content = '' }) => {
   const theme = useTheme();
 
+  console.log(content);
+
+  // Safe content parsing with fallbacks
   // Safe content parsing with fallbacks
   const getSections = () => {
     try {
       return {
+        question: (
+          content.match(
+            /(?:The Question:|\[The Question\])\s*([\s\S]*?)(?=(?:Problem Analysis:|\[Problem Analysis\])|$)/i
+          )?.[1] || ''
+        ).trim(),
         analysis: (
           content.match(
-            /\[Problem Analysis\]([\s\S]*?)(?=\[Solution Steps\]|$)/i
+            /(?:Problem Analysis:|\[Problem Analysis\])\s*([\s\S]*?)(?=(?:Solution Steps:|\[Solution Steps\])|$)/i
           )?.[1] || ''
         ).trim(),
         steps: (
           content.match(
-            /\[Solution Steps\]([\s\S]*?)(?=\[Final Answer\]|$)/i
+            /(?:Solution Steps:|\[Solution Steps\])\s*([\s\S]*?)(?=(?:Final Answer:|\[Final Answer\])|$)/i
           )?.[1] || ''
         ).trim(),
-        answer: (content.match(/\[Final Answer\]([\s\S]*)/i)?.[1] || '').trim(),
+        answer: (
+          content.match(
+            /(?:Final Answer:|\[Final Answer\])\s*([\s\S]*)/i
+          )?.[1] || ''
+        ).trim(),
       };
     } catch (error) {
       console.error('Error parsing content:', error);
-      return { analysis: '', steps: '', answer: '' };
+      return { question: '', analysis: '', steps: '', answer: '' };
     }
   };
 
+  // const getSections = () => {
+  //   try {
+  //     return {
+  //       analysis: (
+  //         content.match(
+  //           /\[Problem Analysis\]([\s\S]*?)(?=\[Solution Steps\]|$)/i
+  //         )?.[1] || ''
+  //       ).trim(),
+  //       steps: (
+  //         content.match(
+  //           /\[Solution Steps\]([\s\S]*?)(?=\[Final Answer\]|$)/i
+  //         )?.[1] || ''
+  //       ).trim(),
+  //       answer: (content.match(/\[Final Answer\]([\s\S]*)/i)?.[1] || '').trim(),
+  //     };
+  //   } catch (error) {
+  //     console.error('Error parsing content:', error);
+  //     return { analysis: '', steps: '', answer: '' };
+  //   }
+  // };
+
   const sections = getSections();
   const styles = solutionStyles(theme);
+
+  console.log(sections);
+
+  console.log(sections.question);
 
   // Check if we have any content to display
   const hasContent = sections.analysis || sections.steps || sections.answer;
@@ -41,6 +78,21 @@ const MathSolutionDisplay = ({ content = '' }) => {
         {hasContent ? (
           <View style={styles.container}>
             {/* Problem Analysis Section */}
+            {sections.question ? (
+              <>
+                <Chip
+                  icon='magnify'
+                  style={styles.chip}
+                  textStyle={{ color: theme.colors.onSecondaryContainer }}
+                >
+                  Question
+                </Chip>
+                <Text variant='bodyLarge' style={styles.analysisText}>
+                  {sections.question}
+                </Text>
+                <Divider style={styles.divider} />
+              </>
+            ) : null}
             {sections.analysis ? (
               <>
                 <Chip

@@ -1,11 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as ImageManipulator from 'expo-image-manipulator';
 import { Alert } from 'react-native';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
-// const API_URL = 'http://192.168.1.240:4000/api/solutions';
-const API_URL = 'http://localhost:4000/api/solutions';
+const API_URL = 'http://10.76.145.8:4000/api/solutions';
+// const API_URL = 'http://localhost:4000/api/solutions';
 
 export const useMathStore = create(
   persist(
@@ -28,6 +27,7 @@ export const useMathStore = create(
 
       /* 2️⃣  upload image to server */
       uploadImage: async () => {
+        console.log('upload...');
         const uri = get().imageUri;
         if (!uri) {
           Alert.alert('No image', 'Take or pick a photo first.');
@@ -38,18 +38,20 @@ export const useMathStore = create(
 
         try {
           // compress & resize to max 1080p to reduce payload
-          const compressed = await ImageManipulator.manipulateAsync(
-            uri,
-            [{ resize: { width: 1080 } }],
-            {
-              compress: 0.8,
-              format: ImageManipulator.SaveFormat.JPEG,
-              base64: true,
-            }
-          );
+          // const compressed = await ImageManipulator.manipulateAsync(
+          //   uri,
+          //   [{ resize: { width: 1080 } }],
+          //   {
+          //     compress: 0.8,
+          //     format: ImageManipulator.SaveFormat.JPEG,
+          //     base64: true,
+          //   }
+          // );
 
-          const base64 = `data:image/jpeg;base64,${compressed.base64}`;
+          // const base64 = `data:image/jpeg;base64,${compressed.base64}`;
 
+          console.log(55, uri);
+          const base64 = uri;
           const res = await fetch(API_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -116,6 +118,16 @@ export const useMathStore = create(
 
           const data = await res.json();
 
+          if (data.data.content.includes('not-math-problem')) {
+            set({
+              imageUri: null,
+              uploading: false,
+              error: "Your question doesn't seem to be a math problem.",
+              result: null,
+            });
+            throw new Error("Your question doesn't seem to be a math problem.");
+          }
+
           // Add to history
           const newHistoryItem = {
             _id: Date.now(),
@@ -138,7 +150,7 @@ export const useMathStore = create(
 
           return { ...data, ok: true };
         } catch (err) {
-          console.error(err);
+          console.error('error', err);
           set({ error: err.message, uploading: false });
           throw err;
         }
@@ -151,7 +163,7 @@ export const useMathStore = create(
 
       setSolutionContent: (id) => {
         const { questionHistory } = get();
-        const historyItem = questionHistory.find((item) => item.id === id);
+        const historyItem = questionHistory.find((item) => item._id === id);
 
         if (historyItem) {
           set({
@@ -165,12 +177,12 @@ export const useMathStore = create(
 
       /* 5️⃣  get question by id */
       getQuestionById: (id) => {
-        return get().questionHistory.find((q) => q.id === id);
+        return get().questionHistory.find((q) => q._id === id);
       },
 
       deleteHistoryItem: async (id) => {
         const { questionHistory } = get();
-        const filtered = questionHistory.filter((item) => item.id !== id);
+        const filtered = questionHistory.filter((item) => item._id !== id);
 
         set({ questionHistory: filtered });
 

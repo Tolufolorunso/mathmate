@@ -1,10 +1,10 @@
-import * as Haptics from 'expo-haptics'
-import { useState } from 'react'
-import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native'
-import { Button, useTheme } from 'react-native-paper'
+import * as Haptics from 'expo-haptics';
+import { useState } from 'react';
+import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Button, useTheme } from 'react-native-paper';
 
-const { width } = Dimensions.get('window')
-const isSmall = width < 350
+const { width } = Dimensions.get('window');
+const isSmall = width < 350;
 
 // Keyboard layouts for different modes
 const keyboardLayouts = {
@@ -285,28 +285,28 @@ const keyboardLayouts = {
       { label: '=', type: 'equals' },
     ],
   ],
-}
+};
 
 export default function EnhancedKeyboard({
   onPress,
   mode = 'standard',
   angleUnit = 'deg',
 }) {
-  const theme = useTheme()
-  const [isSecond, setIsSecond] = useState(false)
+  const theme = useTheme();
+  const [isSecond, setIsSecond] = useState(false);
 
   const press = (key) => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 
     // Handle special keys
     if (key === '2nd') {
-      setIsSecond(!isSecond)
-      return
+      setIsSecond(!isSecond);
+      return;
     }
 
     if (key === 'deg' || key === 'rad') {
-      onPress(key)
-      return
+      onPress(key);
+      return;
     }
 
     // Handle second function keys
@@ -318,56 +318,56 @@ export default function EnhancedKeyboard({
         log: '10ˣ',
         ln: 'eˣ',
         '√': '∛',
-      }
+      };
 
       if (secondFunctions[key]) {
-        onPress(secondFunctions[key])
-        setIsSecond(false)
-        return
+        onPress(secondFunctions[key]);
+        setIsSecond(false);
+        return;
       }
     }
 
-    onPress(key)
-  }
+    onPress(key);
+  };
 
   const getColor = (keyType) => {
     switch (keyType) {
       case 'number':
-        return theme.colors.primary
+        return theme.colors.primary;
       case 'operator':
-        return theme.colors.secondary
+        return theme.colors.secondary;
       case 'function':
-        return theme.colors.success
+        return theme.colors.success;
       case 'trig':
-        return theme.colors.info
+        return theme.colors.info;
       case 'constant':
-        return theme.colors.error
+        return theme.colors.error;
       case 'calculus':
-        return '#8b5cf6' // Purple
+        return '#8b5cf6'; // Purple
       case 'stats':
-        return '#f59e0b' // Amber
+        return '#f59e0b'; // Amber
       case 'variable':
-        return '#06b6d4' // Cyan
+        return '#06b6d4'; // Cyan
       case 'bracket':
-        return '#84cc16' // Lime
+        return '#84cc16'; // Lime
       case 'mode':
       case 'history':
       case 'angle':
-        return '#64748b' // Slate
+        return '#64748b'; // Slate
       case 'clear':
       case 'allClear':
       case 'backspace':
-        return '#ef4444' // Red
+        return '#ef4444'; // Red
       case 'equals':
-        return '#10b981' // Green
+        return '#10b981'; // Green
       case 'shift':
-        return isSecond ? '#fbbf24' : '#6b7280' // Yellow when active
+        return isSecond ? '#fbbf24' : '#6b7280'; // Yellow when active
       default:
-        return theme.colors.primary
+        return theme.colors.primary;
     }
-  }
+  };
 
-  const currentLayout = keyboardLayouts[mode] || keyboardLayouts.standard
+  const currentLayout = keyboardLayouts[mode] || keyboardLayouts.standard;
 
   return (
     <View style={styles.container}>
@@ -379,16 +379,16 @@ export default function EnhancedKeyboard({
 
       {/* Keyboard */}
       <ScrollView
-        style={styles.keyboardScroll}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.keyboardContent}
+      // style={styles.keyboardScroll}
+      // showsVerticalScrollIndicator={false}
+      // contentContainerStyle={styles.keyboardContent}
       >
         {currentLayout.map((row, rowIndex) => (
           <View key={rowIndex} style={styles.row}>
             {row.map((keyDef, keyIndex) => {
-              const label = keyDef.label
-              const keyType = keyDef.type
-              const color = getColor(keyType)
+              const label = keyDef.label;
+              const keyType = keyDef.type;
+              const color = getColor(keyType);
 
               return (
                 <Button
@@ -407,13 +407,13 @@ export default function EnhancedKeyboard({
                 >
                   {label}
                 </Button>
-              )
+              );
             })}
           </View>
         ))}
       </ScrollView>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -452,10 +452,12 @@ const styles = StyleSheet.create({
   },
 
   keyboardScroll: {
-    maxHeight: 400,
+    // flex: 1,
+    // height: '100%',
   },
 
   keyboardContent: {
+    // flex: 1,
     paddingHorizontal: 8,
     paddingVertical: 8,
   },
@@ -484,4 +486,4 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     textAlign: 'center',
   },
-})
+});

@@ -10,7 +10,7 @@ export default function TabLayout() {
         tabBarIcon: ({ color, size }) => {
           let icon;
           if (route.name === 'index') icon = 'home';
-          else if (route.name === 'math') icon = 'camera';
+          else if (route.name === 'math') icon = 'math-cos';
           else if (route.name === 'calculator') icon = 'calculator';
           else if (route.name === 'learn') icon = 'book-open';
           else if (route.name === 'profile') icon = 'account';
@@ -34,7 +34,7 @@ export default function TabLayout() {
       })}
     >
       <Tabs.Screen name='index' options={{ title: 'Home' }} />
-      <Tabs.Screen name='math' options={{ title: 'Mathy' }} />
+      <Tabs.Screen name='math' options={{ title: 'Solve' }} />
       <Tabs.Screen name='calculator' options={{ title: 'Calculator' }} />
       <Tabs.Screen name='learn' options={{ title: 'Learn' }} />
       <Tabs.Screen name='profile' options={{ title: 'Profile' }} />

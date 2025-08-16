@@ -36,64 +36,59 @@ if (
 // --- Memoized History Item for Performance ---
 // By wrapping the item in React.memo, we prevent it from re-rendering
 // unless its specific props have changed.
-const HistoryCard = React.memo(
-  ({ item, onPress, theme, styles, onDelete, deleteHistoryItem }) => {
-    return (
-      <TouchableOpacity onPress={onPress} activeOpacity={0.9}>
-        <Card
-          style={[styles.recentCard, { backgroundColor: theme.colors.surface }]}
-          elevation={1}
-        >
-          <Card.Content style={styles.recentContent}>
-            <View style={styles.recentInfo}>
-              <Chip
-                mode='outlined'
-                icon={item.type === 'image' ? 'camera' : 'keyboard'}
-                style={styles.recentChip}
-              >
-                {item.type === 'image' ? 'Photo' : 'Text'}
-              </Chip>
-              <AppText
-                bodySmall
-                style={{ color: theme.colors.onSurfaceVariant }}
-              >
-                {new Date(item.timestamp).toLocaleDateString()}
-              </AppText>
-            </View>
-            <AppText
-              bodyMedium
-              style={{ color: theme.colors.onSurface }}
-              numberOfLines={2} // Prevents very long text from breaking the layout
+const HistoryCard = React.memo(({ item, onPress, theme, styles, onDelete }) => {
+  return (
+    <TouchableOpacity onPress={onPress} activeOpacity={0.9}>
+      <Card
+        style={[styles.recentCard, { backgroundColor: theme.colors.surface }]}
+        elevation={1}
+      >
+        <Card.Content style={styles.recentContent}>
+          <View style={styles.recentInfo}>
+            <Chip
+              mode='outlined'
+              icon={item.type === 'image' ? 'camera' : 'keyboard'}
+              style={styles.recentChip}
             >
-              {item.type === 'image' ? 'Image Question' : item.content}
+              {item.type === 'image' ? 'Photo' : 'Text'}
+            </Chip>
+            <AppText bodySmall style={{ color: theme.colors.onSurfaceVariant }}>
+              {new Date(item.timestamp).toLocaleDateString()}
             </AppText>
-            <AppText
-              bodySmall
-              style={[styles.recentStatus, { color: theme.colors.success }]}
-            >
-              ✓ Solved
-            </AppText>
-            <IconButton
-              icon='trash-can-outline'
-              size={18}
-              iconColor={theme.colors.error}
-              style={{
-                position: 'absolute',
-                bottom: 8,
-                right: 8,
-                margin: 0,
-              }}
-              onPress={(e) => {
-                e.stopPropagation(); // prevent card press
-                onDelete();
-              }}
-            />
-          </Card.Content>
-        </Card>
-      </TouchableOpacity>
-    );
-  }
-);
+          </View>
+          <AppText
+            bodyMedium
+            style={{ color: theme.colors.onSurface }}
+            numberOfLines={2} // Prevents very long text from breaking the layout
+          >
+            {item.type === 'image' ? 'Image Question' : item.content}
+          </AppText>
+          <AppText
+            bodySmall
+            style={[styles.recentStatus, { color: theme.colors.success }]}
+          >
+            ✓ Solved
+          </AppText>
+          <IconButton
+            icon='trash-can-outline'
+            size={18}
+            iconColor={theme.colors.error}
+            style={{
+              position: 'absolute',
+              bottom: 8,
+              right: 8,
+              margin: 0,
+            }}
+            onPress={(e) => {
+              e.stopPropagation(); // prevent card press
+              onDelete();
+            }}
+          />
+        </Card.Content>
+      </Card>
+    </TouchableOpacity>
+  );
+});
 
 export default function HistoriesScreen() {
   const theme = useTheme();
@@ -184,7 +179,7 @@ export default function HistoriesScreen() {
       if (isNavigating) return;
 
       setIsNavigating(true);
-      setSolutionContent(item.id);
+      setSolutionContent(item._id);
       router.push('(screens)/solution');
 
       // Reset the flag after a short delay to allow navigation to complete
@@ -219,8 +214,8 @@ export default function HistoriesScreen() {
         style: 'destructive',
         onPress: () => {
           animateList();
-          deleteHistoryItem(item.id); // remove from store  AsyncStorage
-          setData((prev) => prev.filter((i) => i.id !== item.id));
+          deleteHistoryItem(item._id); // remove from store  AsyncStorage
+          setData((prev) => prev.filter((i) => i._id !== item._id));
         },
       },
     ]);
@@ -234,7 +229,6 @@ export default function HistoriesScreen() {
         onPress={() => handlePressItem(item)}
         theme={theme}
         styles={styles}
-        // deleteHistoryItem={deleteHistoryItem}
         onDelete={createDeleteHandler(item)}
       />
     ),
@@ -301,7 +295,7 @@ export default function HistoriesScreen() {
         <FlatList
           data={data}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={(item) => item?._id?.toString()}
           ListHeaderComponent={renderHeader}
           ListFooterComponent={renderFooter}
           ListEmptyComponent={renderEmptyState}

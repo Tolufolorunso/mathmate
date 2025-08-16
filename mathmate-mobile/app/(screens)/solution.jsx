@@ -5,11 +5,9 @@ import { AppBar } from '../../components/ui';
 import { useMathStore } from '../../store/mathStore';
 
 export default function solution() {
-  const { questionHistory, solutionContent } = useMathStore();
+  const { solutionContent } = useMathStore();
   const theme = useTheme();
-  // const solutionContent = questionHistory[0]?.result?.data?.content;
 
-  console.log(12, solutionContent);
   return (
     <>
       <AppBar

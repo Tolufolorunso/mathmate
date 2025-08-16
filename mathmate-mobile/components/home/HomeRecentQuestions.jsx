@@ -41,9 +41,9 @@ export function HomeRecentQuestions({ questions, index }) {
 
       {questions.map((question) => (
         <TouchableOpacity
-          key={question.id}
+          key={question._id}
           onPress={() => {
-            setSolutionContent(question.id);
+            setSolutionContent(question._id);
             router.push('(screens)/solution');
           }}
         >
@@ -71,6 +71,7 @@ export function HomeRecentQuestions({ questions, index }) {
                     color: theme.colors.onSurfaceVariant,
                   }}
                 >
+                  {console.log(question)}
                   {new Date(question.timestamp).toLocaleDateString()}
                 </AppText>
               </View>
